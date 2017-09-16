@@ -13,7 +13,7 @@
     webserver_config_root: /usr/local/etc/nginx
     tls_root: /usr/local/etc/ssl/acme
     logs_root: /var/logs/www
-    venus_commit_id: a7954c331a9d6f48d8da18a0317320ea2e9f13dd
+    commit_id: a7954c331a9d6f48d8da18a0317320ea2e9f13dd
 
   tasks:
     - name: install requirements
@@ -55,13 +55,13 @@
 
     - name: download and extract venus
       unarchive:
-        src: 'https://github.com/kgaughan/venus/archive/{{ venus_commit_id }}.zip'
+        src: 'https://github.com/kgaughan/venus/archive/{{ commit_id }}.zip'
         dest: '{{ vhosts_root }}/{{ domain_name }}'
         remote_src: yes
 
     - name: symlink extracted version
       file:
-        src: '{{ vhosts_root }}/{{ domain_name }}/venus-{{ venus_commit_id }}'
+        src: '{{ vhosts_root }}/{{ domain_name }}/venus-{{ commit_id }}'
         dest: '{{ vhosts_root }}/{{ domain_name }}/venus'
         state: link
 
