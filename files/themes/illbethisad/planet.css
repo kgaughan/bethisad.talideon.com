@@ -1,0 +1,152 @@
+@font-face {
+	font-family: "League Gothic";
+	src: url(league-gothic.otf);
+}
+
+body {
+	/*background: #F3E3A8 url(images/old-newspaper.jpg);*/
+	width: 1024px;
+	line-height: 1.5;
+	margin: 0 auto;
+	color: #444;
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+h1, .subtitle {
+	font-family: "League Gothic", sans-serif;
+	text-align: center;
+}
+h1 {
+	border-top: 12px solid #A00;
+	font-weight: 300;
+	font-size: 600%;
+	margin: 0 12px;
+}
+.subtitle {
+	border-top: 3px double #AAA;
+	color: #A00;
+	font-size: 150%;
+	text-transform: uppercase;
+	overflow: hidden;
+	margin: 0 12px 1em 12px;
+}
+.subtitle .sl {
+	float: left;
+	display: block;
+}
+.subtitle .sr {
+	float: right;
+	display: block;
+}
+
+.box h2 {
+	font-size: 300%;
+	font-family: "League Gothic", sans-serif;
+	font-weight: 300;
+	line-height: 1.1;
+	margin: 0;
+}
+
+.byline {
+	margin-top: 0;
+	font-style: italic;
+}
+.date {
+	margin: 0;
+	font-family: "League Gothic", sans-serif;
+	font-size: 150%;
+	color: #A00;
+	text-align: right;
+}
+
+.byline em {
+	font-weight: bold;
+	font-style: inherit;
+}
+
+.box {
+	border-top: 4px solid #A00;
+	width: 488px;
+	padding: 0 0 12px 0;
+	margin: 0 12px;
+	float: left;
+	overflow: hidden;
+}
+
+h2 a, h3 a, h4 a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.box a.more {
+	visibility: hidden;
+}
+
+.box:hover a.more {
+	visibility: visible;
+}
+
+.box a:hover {
+	text-decoration: underline;
+	color: #A00;
+}
+
+.box a.more {
+	font-size: 100%;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	background: #A00;
+	color: white;
+	padding: 0.25ex 0.8ex;
+}
+
+#footer {
+	background: #A00;
+	color: white;
+	padding: 12px 12px 48px 12px;
+	margin: 0 12px;
+	overflow: hidden;
+}
+
+#footer h2:first-child {
+	margin-top: 0;
+}
+
+#footer h2 {
+	border-top: 2px solid white;
+	font-family: "League Gothic", sans-serif;
+	font-weight: 300;
+	font-size: 150%;
+	margin-bottom: 0;
+}
+
+#footer h2 + * {
+	margin-top: 0;
+}
+
+#footer a {
+	color: inherit;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#about {
+	width: 476px;
+	float: left;
+}
+
+#partners {
+	width: 476px;
+	float: right;
+}
+
+#footer ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+#footer img {
+	border: 0;
+}

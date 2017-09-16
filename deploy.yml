@@ -1,0 +1,92 @@
+---
+- name: deploy {{ domain_name }}
+  hosts: all
+  remote_user: keith
+  become: yes
+  gather_facts: false
+
+  vars:
+    ansible_python_interpreter: /usr/local/bin/python
+
+    # domain_name comes in from the invocation.
+    vhosts_root: /usr/local/www
+    webserver_config_root: /usr/local/etc/nginx
+    tls_root: /usr/local/etc/ssl/acme
+    logs_root: /var/logs/www
+    venus_commit_id: 3007c23118a64b3234dc27668a71425f2f60abf2
+
+  tasks:
+    - name: install requirements
+      pkgng:
+        name: '{{ item }}'
+        cached: yes
+      with_items:
+        - py27-bsddb
+        - py27-Genshi
+        - py27-libxml2
+        - py27-libxslt
+
+    - name: ensure target directories exist
+      file:
+        dest: '{{ item }}'
+        state: directory
+      with_items:
+        - '{{ vhosts_root }}/{{ domain_name }}/web'
+        - '{{ vhosts_root }}/{{ domain_name }}/cache'
+        - '{{ webserver_config_root }}/vhosts'
+        - '{{ logs_root }}'
+
+    - name: ensure venus's directories exist
+      file:
+        dest: '{{ item }}'
+        state: directory
+        owner: www
+        group: www
+      with_items:
+        - '{{ vhosts_root }}/{{ domain_name }}/web'
+        - '{{ vhosts_root }}/{{ domain_name }}/cache'
+
+    - name: copy up vhost config
+      template:
+        src: vhost.conf.j2
+        dest: '{{ webserver_config_root }}/vhosts'
+      notify:
+        - reload nginx
+
+    - name: download and extract venus
+      unarchive:
+        src: 'https://github.com/kgaughan/venus/archive/{{ venus_commit_id }}.zip'
+        dest: '{{ vhosts_root }}/{{ domain_name }}'
+        remote_src: yes
+
+    - name: symlink extracted version
+      file:
+        src: '{{ vhosts_root }}/{{ domain_name }}/venus-{{ venus_commit_id }}'
+        dest: '{{ vhosts_root }}/{{ domain_name }}/venus'
+        state: link
+
+    - name: copy up themes
+      synchronize:
+        src: themes
+        dest: '{{ vhosts_root }}/{{ domain_name }}/'
+        recursive: yes
+        delete: yes
+
+    - name: copy up venus config
+      template:
+        src: config.ini.j2
+        dest: '{{ vhosts_root }}/{{ domain_name }}/config.ini'
+
+    - name: configure cron job
+      cron:
+        name: 'run venus'
+        special_time: daily
+        user: www
+        job: '(cd {{ vhosts_root }}/{{ domain_name }}; {{ ansible_python_interpreter }} venus/planet.py config.ini >/dev/null 2>/dev/null'
+
+  handlers:
+    - name: reload nginx
+      service:
+        name: nginx
+        state: reloaded
+      when: False

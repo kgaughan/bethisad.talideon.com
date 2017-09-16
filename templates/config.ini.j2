@@ -1,0 +1,17 @@
+[Planet]
+name = Ill Newel di'll Bethisad
+link = https://bethisad.talideon.com/
+owner_name = Keith Gaughan
+
+cache_directory = {{ vhosts_root }}/{{ domain_name }}/cache
+log_level = INFO
+feed_timeout = 20
+
+output_theme = {{ vhosts_root }}/{{ domain_name }}/themes/illbethisad
+output_dir = {{ vhosts_root }}/{{ domain_name }}/web
+items_per_page = 60
+new_feed_items = 8
+
+[https://telelouisianne.wordpress.com/feed/]
+name = TéléLouisianne International Edition
+filters = excerpt.py

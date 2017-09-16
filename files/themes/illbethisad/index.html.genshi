@@ -1,0 +1,58 @@
+<?python
+import time, re
+def wp_hack(s):
+    return re.sub("""<img alt="" border="0" height="1" src="https://pixel\.wp\.com/b\.gif\?host=[^&]+&amp;blog=[^&]+&amp;post=[^&]+&amp;subd=[^&]+&amp;ref=&amp;feed=1" width="1" />""", "", s)
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:py="http://genshi.edgewall.org/">
+  <head>
+    <title>Ill Newel di&#8217;ll Bethisad</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="generator" content="$feed.generator"/>
+    <meta name="robots" content="noindex,nofollow"/>
+    <link rel="stylesheet" href="planet.css" type="text/css"/>
+    <link py:for="link in feed.links" py:if="link.type in ['application/atom+xml','application/rss+xml']" href="$link.href" rel="alternate" title="$link.title" type="$link.type"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha256-ImQvICV38LovIsvla2zykaCTdEh1Z801Y+DSop91wMU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js" integrity="sha256-cz18JqX7ckDoPoryyCIhizIbUUPijC3WWrJJIpesa9c=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>Ill Newel di&#8217;ll Bethisad</h1>
+    <div class="subtitle">
+      <span class="sl">Pybligad Dew Weg pab Diwrn</span>
+      <span class="sr">Eddidiwn Inernediwnal</span>
+    </div>
+    <div id="entries">
+      <py:for each="entry in entries">
+        <div class="box">
+          <p class="date">${time.strftime('%Y-%m-%d', entry.updated_parsed)}</p>
+          <h2><a href="$entry.link">$entry.title_detail.stream</a></h2>
+          <p class="byline">by <em>$entry.author_detail.name</em> of <em>$entry.source.config.name</em></p>
+          <div class="content">${wp_hack(entry.summary_detail.value)}</div>
+        </div>
+      </py:for>
+    </div>
+    <div id="footer">
+      <div id="about">
+        <h2>About Us</h2>
+        <p><strong>Ill Newel di&#8217;ll Bethisad</strong> is the world&#8217;s premier daily newspaper. Available in all major world cities, our staff in Castreleon and across the world strive to give you the world&#8217;s news as it happens.</p>
+        <h2>Powered by</h2>
+        <p><a href="http://intertwingly.net/code/venus/"><img src="images/venus.png" width="80" height="15" alt="Planet Venus"/></a></p>
+      </div>
+      <div id="partners">
+        <h2>Syndication and Correspondants</h2>
+        <p>We&#8217;re always on the lookout for local correspondants, so if you&#8217;re interested in joining our team as a correspondant, or if your newspaper wishes to become a syndication partner, <a href="http://groups.yahoo.com/group/conculture/">contact us via Bycopel</a>.</p>
+        <h2>Partners</h2>
+        <ul>
+          <li py:for="feed in feeds">
+            <a py:for="link in feed.links" py:if="link.rel == 'self' and link.type in ['application/atom+xml','application/rss+xml']" href="$link.href" title="subscribe"><img src="images/feed-icon-10x10.png" alt="(feed)"/></a>
+            <py:choose>
+              <a py:when="feed.planet_message" href="$feed.link" class="message" title="$feed.planet_message">$feed.config.name</a>
+              <a py:otherwise="1" href="$feed.link" title="$feed.title">$feed.config.name</a>
+            </py:choose>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript">$('#entries').masonry({});</script>
+  </body>
+</html>
