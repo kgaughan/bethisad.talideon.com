@@ -13,7 +13,7 @@
     webserver_config_root: /usr/local/etc/nginx
     tls_root: /usr/local/etc/ssl/acme
     logs_root: /var/logs/www
-    venus_commit_id: 3007c23118a64b3234dc27668a71425f2f60abf2
+    venus_commit_id: a7954c331a9d6f48d8da18a0317320ea2e9f13dd
 
   tasks:
     - name: install requirements
