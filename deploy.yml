@@ -69,7 +69,8 @@
       synchronize:
         src: themes
         dest: '{{ vhosts_root }}/{{ domain_name }}/'
-        recursive: yes
+        owner: no
+        group: no
         delete: yes
 
     - name: copy up venus config
