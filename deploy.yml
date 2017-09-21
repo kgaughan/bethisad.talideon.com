@@ -25,6 +25,7 @@
         - py27-Genshi
         - py27-libxml2
         - py27-libxslt
+        - py27-rdflib
 
     - name: ensure target directories exist
       file:
