@@ -21,7 +21,6 @@
         name: '{{ item }}'
         cached: yes
       with_items:
-        - py27-bsddb
         - py27-Genshi
         - py27-libxml2
         - py27-libxslt
@@ -84,7 +83,7 @@
         name: 'run venus'
         special_time: daily
         user: www
-        job: '(cd {{ vhosts_root }}/{{ domain_name }}; {{ ansible_python_interpreter }} venus/planet.py config.ini >/dev/null 2>/dev/null'
+        job: '(cd {{ vhosts_root }}/{{ domain_name }}; {{ ansible_python_interpreter }} venus/planet.py config.ini) >/dev/null 2>/dev/null'
 
   handlers:
     - name: reload nginx
