@@ -2,7 +2,7 @@
 - name: deploy {{ domain_name }}
   hosts: all
   remote_user: keith
-  become: yes
+  become: true
   gather_facts: false
 
   vars:
@@ -19,7 +19,7 @@
     - name: install requirements
       pkgng:
         name: '{{ item }}'
-        cached: yes
+        cached: true
       with_items:
         - py27-Genshi
         - py27-libxml2
@@ -57,7 +57,7 @@
       unarchive:
         src: 'https://github.com/kgaughan/venus/archive/{{ commit_id }}.zip'
         dest: '{{ vhosts_root }}/{{ domain_name }}'
-        remote_src: yes
+        remote_src: true
 
     - name: symlink extracted version
       file:
@@ -69,9 +69,9 @@
       synchronize:
         src: themes
         dest: '{{ vhosts_root }}/{{ domain_name }}/'
-        owner: no
-        group: no
-        delete: yes
+        owner: false
+        group: false
+        delete: true
 
     - name: copy up venus config
       template:
@@ -90,4 +90,4 @@
       service:
         name: nginx
         state: reloaded
-      when: False
+      when: false
