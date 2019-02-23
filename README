@@ -14,8 +14,32 @@ It's powered by the `Planet Venus`__ aggregator.
 
 .. __: https://github.com/rubys/venus
 
+Adding your site
+================
+
 If you wish to be included in the aggregator, consider making a pull request
 to modifying ``templates/config.ini.j2``, adding a section with the URL and
-name of your site.
+name of your site. For instance::
+
+    [https://example.com/feed/]
+    name = Example News, International Edition
+
+This site is purely intended as an aggregator, which is the reason why I've
+this in the header::
+
+    <meta name="robots" content="noindex,follow"/>
+
+That means `links are followed, but the page isn't indexed`__.
+
+.. __: http://www.robotstxt.org/meta.html
+
+Moreover, if you only want an excerpt from your posts included, be sure to
+include the `excerpt.py` filter in your section::
+
+    filters = excerpt.py
+
+Alternatively, if you're on Twitter, ping me at `@talideon`__.
+
+.. __: https://twitter.com/talideon/
 
 .. vim:set ft=rst:

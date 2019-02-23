@@ -9,7 +9,7 @@ def wp_hack(s):
     <title>Ill Newel di&#8217;ll Bethisad</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="generator" content="$feed.generator"/>
-    <meta name="robots" content="noindex,nofollow"/>
+    <meta name="robots" content="noindex,follow"/>
     <link rel="stylesheet" href="planet.css" type="text/css"/>
     <link py:for="link in feed.links" py:if="link.type in ['application/atom+xml','application/rss+xml']" href="$link.href" rel="alternate" title="$link.title" type="$link.type"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha256-ImQvICV38LovIsvla2zykaCTdEh1Z801Y+DSop91wMU=" crossorigin="anonymous"></script>
@@ -40,7 +40,7 @@ def wp_hack(s):
       </div>
       <div id="partners">
         <h2>Syndication and Correspondants</h2>
-        <p>We&#8217;re always on the lookout for local correspondants, so if you&#8217;re interested in joining our team as a correspondant, or if your newspaper wishes to become a syndication partner, <a href="http://groups.yahoo.com/group/conculture/">contact us via Bycopel</a>.</p>
+        <p>We&#8217;re always on the lookout for local correspondants, so if you&#8217;re interested in joining our team as a correspondant, or if your newspaper wishes to become a syndication partner, <a href="http://groups.yahoo.com/group/conculture/">contact us via Bycopel</a>, or <a href="https://github.com/kgaughan/bethisad.talideon.com">submit a pull request</a>.</p>
         <h2>Partners</h2>
         <ul>
           <li py:for="feed in feeds">
