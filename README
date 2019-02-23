@@ -3,16 +3,19 @@ bethisad.talideon.com
 =====================
 
 This repo contains an Ansible deployment playbook for the site
-bethisad.talideon.com, which is a
-`River of News <http://scripting.com/2014/06/02/whatIsARiverOfNewsAggregator.html>`_
-style aggregator for the `Ill Bethisad <http://ib.frath.net/w/Main_Page>`_
-alternate history community.
+bethisad.talideon.com__, which is a `River of News`__ style aggregator for the
+`Ill Bethisad`__ alternate history community.
 
-It's powered by the `Planet Venus <https://github.com/rubys/venus>`_
-aggregator.
+.. __: https://bethisad.talideon.com/
+.. __: http://scripting.com/2014/06/02/whatIsARiverOfNewsAggregator.html
+.. __: http://ib.frath.net/w/Main_Page
+
+It's powered by the `Planet Venus`__ aggregator.
+
+.. __: https://github.com/rubys/venus
 
 If you wish to be included in the aggregator, consider making a pull request
-to modifying `templates/config.ini.j2`, adding a section with the URL and name
-of your site.
+to modifying ``templates/config.ini.j2``, adding a section with the URL and
+name of your site.
 
 .. vim:set ft=rst:
